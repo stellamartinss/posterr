@@ -1,0 +1,23 @@
+@import 'src/styles.scss';
+
+.space {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar {
+  background: $purple;
+  padding: 10px 5px;
+}
+
+.brand {
+  color: white;
+}
+
+.material-icons {
+  color: white;
+}
+
+.profile-image {
+  width: 30px;
+  height: 30px;
+}

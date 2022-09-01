@@ -1,0 +1,96 @@
+/* You can add global styles to this file, and also import other style files */
+
+$yellow: #FFBE0B;
+
+$orange: #FB5607;
+
+$pink: #FF006E;
+$pink-500: #9a0143;
+
+$purple: #8338EC;
+$purple-500: #6225e5;
+$purple-700: #2a0873;
+
+$blue: #3A86FF;
+
+
+body {
+  font-family: 'Poppins';
+  margin: 0;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 32px;
+}
+
+@media (max-width: 320px) {
+  h1 {
+    font-weight: 700;
+    font-size: 19.78px;
+    line-height: 19.78px;
+  }
+}
+
+@media (max-width: 700px) {
+
+  .mat-card-content {
+    font-size: 18px !important;
+  }
+}
+
+.btn-icon {
+  background: transparent;
+  border: unset;
+}
+
+.btn-primary {
+  background: $purple;
+  border-radius: 100px;
+  border: 1px solid $purple;
+  color: white;
+  font-weight: 700;
+  box-shadow: 1px 3px 0px $purple-700;
+  padding: 10px 10px;
+  min-width: 100px;
+}
+
+.btn-primary-outline {
+  border: 1px solid $purple;
+  background: transparent;
+  padding: 10px 5px;
+  min-width: 100px;
+  border-radius: 100px;
+  color: $purple;
+  font-size: 16px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background: $pink;
+  border-radius: 100px;
+  border: 1px solid $pink;
+  color: white;
+  font-weight: 700;
+  box-shadow: 1px 3px 0px $pink-500;
+  padding: 10px 10px;
+  min-width: 100px;
+}
+
+.pink-text{
+  color: $pink
+}
+
+.profile-image {
+  background-size: cover !important;
+  width: 80px;
+  height: 80px;
+  border: unset;
+  border-radius: 100px;
+}
+
+#modal div .mat-card-content .mat-card span.profile-name, #modal div .mat-card span.profile-name {
+  margin-left: 34px;
+}

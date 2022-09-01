@@ -1,0 +1,10 @@
+<mat-toolbar class="py-2">
+  <span class="brand">POSTERR</span>
+  <span class="space"></span>
+  <button mat-icon-button class="profile-image" aria-label="profile"
+          (click)="openUserModal()"
+          [ngStyle]="{background: 'url(' + user?.profile_picture + ')'}">
+  </button>
+</mat-toolbar>
+
+

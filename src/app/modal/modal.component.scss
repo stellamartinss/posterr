@@ -1,0 +1,42 @@
+@import 'src/styles';
+
+h1 {
+  color: $purple;
+  margin-left: 5px;
+}
+
+.value {
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 0;
+
+  color: #000000;
+}
+
+.label {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 0;
+
+  color: #8338EC;
+}
+
+.metrics {
+  margin-top: 30px;
+  text-align: center;
+}
+
+@media(max-width: 700px) {
+  .profile-image{
+    width: 50px;
+    height: 50px;
+  }
+
+  .value {
+    font-size: 32px;
+  }
+
+  .label {
+    font-size: 15px;
+  }
+}

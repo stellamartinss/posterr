@@ -1,0 +1,15 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center">
+      <button class="btn-primary mr-3" [class]="{'btn-primary-outline': selectedToggle === 'following'}"
+              (click)="setSelectedToggle('all')">all
+      </button>
+      <button class="btn-primary" [class]="{'btn-primary-outline': selectedToggle === 'all'}"
+              (click)="setSelectedToggle('following')">following
+      </button>
+    </div>
+
+    <router-outlet></router-outlet>
+
+  </div>
+</div>
