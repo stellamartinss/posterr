@@ -1,5 +1,8 @@
 <div class="container">
   <div class="row">
+    <div class="col-12 text-right mb-5">
+      <span class="since-date">Member since {{user?.created_at | date: 'longDate'}}</span>
+    </div>
     <div class="col-12 col-lg-6 d-flex justify-content-start">
       <div mat-icon-button class="profile-image" aria-label="profile"
            [ngStyle]="{background: 'url(' + user?.profile_picture + ')'}">
@@ -27,9 +30,7 @@
       </div>
     </div>
 
-    <div class="col-12 text-right">
-      <span class="since-date">Since {{user?.created_at | date: 'longDate'}} at {{user?.created_at | date: 'shortTime'}}</span>
-    </div>
+
   </div>
 </div>
 

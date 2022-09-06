@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ModalComponent} from "../../modal/modal.component";
 import {MatDialog} from "@angular/material/dialog";
 import {PostService} from "../../services/post.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-post-list-template',
@@ -11,20 +12,13 @@ import {PostService} from "../../services/post.service";
 export class PostListTemplateComponent implements OnInit {
   @Input() posts: any;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private router: Router,
+              private route: ActivatedRoute) {}
 
   ngOnInit() {}
 
-  openUserModal(user_id: number) {
-    const dialogRef = this.dialog.open(ModalComponent, {
-      width: '1000px',
-      height: '90vh',
-      data: {user_id: user_id},
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+  goToProfile(user_id: number) {
+    this.router.navigate(['/all'], {queryParams: {user_id: user_id}});
   }
 
   unfollow() {}

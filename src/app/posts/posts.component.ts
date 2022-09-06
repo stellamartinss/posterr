@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationStart, Router} from "@angular/router";
-import {filter} from "rxjs";
-import {PostService} from "../services/post.service";
 import {UserService} from "../services/user.service";
 import {DataService} from "../services/data.service";
 

@@ -3,7 +3,7 @@
   <span class="space"></span>
   <span class="welcome">Welcome, {{user?.name}}!</span>
   <button mat-icon-button class="profile-image" aria-label="profile"
-          (click)="openUserModal()"
+          (click)="goToProfile()"
           [ngStyle]="{background: 'url(' + user?.profile_picture + ')'}">
   </button>
 </mat-toolbar>

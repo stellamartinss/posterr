@@ -7,7 +7,7 @@ const routes: Routes = [
   {path: '', component: AllComponent},
   {path: 'all', component: AllComponent},
   {path: 'following', component: FollowingComponent},
-  {path: '**', component: AllComponent},
+  {path: '**', redirectTo: 'all'},
 ]
 
 @NgModule({
