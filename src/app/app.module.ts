@@ -10,7 +10,7 @@ import {MatMenuModule} from "@angular/material/menu";
 
 import { MenuComponent } from './menu/menu.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {RouterModule} from "@angular/router";
+import {PreloadAllModules, RouterModule} from "@angular/router";
 import {PostsModule} from "./posts/posts.module";
 import { ModalComponent } from './modal/modal.component';
 import {MatDialogModule} from "@angular/material/dialog";

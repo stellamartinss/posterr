@@ -14,6 +14,7 @@ import {DataService} from "../../services/data.service";
 })
 export class PostListTemplateComponent implements OnInit {
   @Input() posts: any;
+  logged_in: any;
 
   constructor(public dialog: MatDialog,
               private router: Router,
@@ -22,7 +23,12 @@ export class PostListTemplateComponent implements OnInit {
               private postService: PostService,
               private commonService: CommonService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userService.getLoggedUser().subscribe(user => {
+      debugger;
+      this.logged_in = user[0];
+    });
+  }
 
   goToProfile(user_id: number) {
     const page = this.commonService.getPage()

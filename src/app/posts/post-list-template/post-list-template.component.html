@@ -14,7 +14,7 @@
           <span class="profile-name">{{post.user.name}}</span>
         </div>
         <div class="col-12 col-md-2">
-          <div class="d-flex justify-content-end">
+          <div class="d-flex justify-content-end" *ngIf="post.user.id !== logged_in.id">
             <button *ngIf="post.is_following !== true" class="btn-primary" (click)="follow(post.user.id)">follow</button>
             <button *ngIf="post.is_following === true" class="btn-primary btn-primary-outline following-tag"
                     (click)="unfollow(post.user.id)">following

@@ -5,6 +5,7 @@ import {Observable, Subscription} from "rxjs";
 import {CommonService} from "../../services/common-service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
+import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'app-following',
@@ -18,12 +19,18 @@ export class FollowingComponent implements OnInit {
 
   constructor(private postsService: PostService,
               private commonService: CommonService,
+              private dataService: DataService,
               private router: Router, public dialog: MatDialog,
               private route: ActivatedRoute) {
     this.getProfile();
   }
 
   ngOnInit(): void {
+    this.dataService.reloadPosts.subscribe((res) => {
+      if(res) {
+        this.posts = this.getFollowingPosts();
+      }
+    })
     this.getFollowingPosts()
   }
 
