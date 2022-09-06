@@ -10,7 +10,7 @@ export class PostService {
 
   getUserPosts(id: number): Observable<any> {
     let token = localStorage.getItem('r-token') || ''
-    const userPosts = this.httpService.httpGet(`/api/posts?user._id=${id}&_sort=createTime&_order=desc`, token);
+    const userPosts = this.httpService.httpGet(`/api/posts?user._id=${id}&_sort=content.created_at&_order=desc`, token);
 
     return userPosts;
   }
@@ -24,7 +24,7 @@ export class PostService {
 
   getUserFollowingPosts(): Observable<any> {
     let token = localStorage.getItem('r-token') || ''
-    const userPosts = this.httpService.httpGet(`/api/posts?is_following=true&_sort=createTime&_order=desc`, token);
+    const userPosts = this.httpService.httpGet(`/api/posts?is_following=true&_sort=content.created_at&_order=desc`, token);
 
     return userPosts;
   }

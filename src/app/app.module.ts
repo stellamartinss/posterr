@@ -22,6 +22,7 @@ import {PostService} from "./services/post.service";
 import {HttpClientModule} from "@angular/common/http";
 import {HttpService} from "./services/http-service";
 import {CommonService} from './services/common-service';
+import {DataService} from "./services/data.service";
 
 
 
@@ -50,6 +51,7 @@ import {CommonService} from './services/common-service';
   providers: [UserService,
     PostService,
     HttpService,
+    DataService,
     CommonService],
   bootstrap: [AppComponent],
 })

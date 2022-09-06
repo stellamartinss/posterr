@@ -3,6 +3,7 @@ import {NavigationStart, Router} from "@angular/router";
 import {filter} from "rxjs";
 import {PostService} from "../services/post.service";
 import {UserService} from "../services/user.service";
+import {DataService} from "../services/data.service";
 
 @Component({
   selector: 'app-posts',
@@ -15,6 +16,7 @@ export class PostsComponent implements OnInit {
   logged_user: any;
 
   constructor(private router: Router,
+              private dataService: DataService,
               private userService: UserService) {
   }
 
@@ -43,7 +45,7 @@ export class PostsComponent implements OnInit {
 
   reloadPosts($event: any) {
     if ($event === true) {
-      this.router.navigateByUrl('/all');
+      this.dataService.setReloadPosts(true)
     }
   }
 }

@@ -55,7 +55,7 @@
         </mat-card-actions>
 
         <span class="post-date">
-          {{post.content.subContent.created_at | date: 'longDate'}}
+          {{post.content.subContent.created_at | date: 'longDate'}} at {{post.content.subContent.created_at | date: 'shortTime'}}
         </span>
       </mat-card>
 
@@ -68,7 +68,7 @@
     <span class="material-icons big-quote-sign" *ngIf="post.content.type === 'quote'">format_quote</span>
     <span class="material-icons big-quote-sign" *ngIf="post.content.type === 'repost'">repeat</span>
     <span class="post-date">
-    {{post.content.created_at | date: 'longDate'}}
+    {{post.content.created_at | date: 'longDate'}} at {{post.content.created_at | date: 'shortTime'}}
     </span>
   </mat-card>
 </div>

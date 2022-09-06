@@ -36,8 +36,6 @@ export class ModalComponent implements OnInit {
   private getUser() {
     this.userService.getUser(this.data.user_id).subscribe(res => {
       this.user = res[0]
-      this.formatDate(this.user.created_at)
-      console.log(this.user)
     }, error => {
       this.user = {}
     });
@@ -57,10 +55,5 @@ export class ModalComponent implements OnInit {
     }, error => {
       this.userPosts = {}
     })
-  }
-
-  formatDate(created_at: any) {
-const date = new Date(created_at)
-    debugger
   }
 }
