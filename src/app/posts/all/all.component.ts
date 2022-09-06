@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import posts from '../../../../api/db/posts.json'
+import {PostService} from "../../services/post.service";
 
 @Component({
   selector: 'app-all',
@@ -8,11 +8,20 @@ import posts from '../../../../api/db/posts.json'
 })
 export class AllComponent implements OnInit {
 
-  posts = posts
+  posts: any;
 
-  constructor() {}
+  constructor(private postsService: PostService) {
+
+  }
 
   ngOnInit(): void {
+    this.getAll();
+  }
+
+  getAll() {
+    this.postsService.getPosts().subscribe(res => {
+      this.posts = res
+    });
   }
 
 }

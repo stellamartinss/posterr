@@ -20,6 +20,7 @@ import { PublishAreaComponent } from './publish-area/publish-area.component';
 import {UserService} from "./services/user.service";
 import {PostService} from "./services/post.service";
 import {HttpClientModule} from "@angular/common/http";
+import {HttpService} from "./services/http-service";
 
 
 
@@ -44,7 +45,7 @@ import {HttpClientModule} from "@angular/common/http";
     PostsModule,
     HttpClientModule
   ],
-  providers: [UserService, PostService],
+  providers: [UserService, PostService, HttpService],
   bootstrap: [AppComponent],
 })
 export class AppModule {

@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import posts from '../../../../api/db/posts.json'
 import {ModalComponent} from "../../modal/modal.component";
 import {MatDialog} from "@angular/material/dialog";
+import {PostService} from "../../services/post.service";
 
 @Component({
   selector: 'app-post-list-template',
@@ -9,14 +9,13 @@ import {MatDialog} from "@angular/material/dialog";
   styleUrls: ['./post-list-template.component.scss']
 })
 export class PostListTemplateComponent implements OnInit {
-  @Input() posts = posts;
+  @Input() posts: any;
 
   constructor(public dialog: MatDialog) {}
 
   ngOnInit() {}
 
   openUserModal(user_id: number) {
-    debugger;
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '1000px',
       height: '90vh',
@@ -28,4 +27,5 @@ export class PostListTemplateComponent implements OnInit {
     });
   }
 
+  unfollow() {}
 }

@@ -21,15 +21,39 @@ export class ModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = this.userService.getUser(this.data.user_id);
-debugger
-    this.logged_user = this.userService.getLoggedUser();
-    this.userPosts = this.postService.getUserPosts(this.data.user_id)
+    this.getUser();
+
+    this.getLoggedUser();
+    this.getUserPosts();
   }
 
   reloadPosts($event: any) {
-    if($event === true) {
-      this.userPosts = this.postService.getUserPosts(this.data.user_id)
+    if ($event === true) {
+      this.userPosts = this.getUserPosts()
     }
+  }
+
+  private getUser() {
+    this.userService.getUser(this.data.user_id).subscribe(res => {
+      this.user = res[0]
+    }, error => {
+      this.user = {}
+    });
+  }
+
+  private getLoggedUser() {
+    this.userService.getLoggedUser().subscribe(res => {
+      this.logged_user = res[0]
+    }, error => {
+      this.logged_user = {}
+    });
+  }
+
+  private getUserPosts() {
+    this.postService.getUserPosts(this.data.user_id).subscribe(res => {
+      this.userPosts = res
+    }, error => {
+      this.userPosts = {}
+    })
   }
 }

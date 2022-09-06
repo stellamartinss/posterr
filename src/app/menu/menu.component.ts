@@ -14,9 +14,10 @@ export class MenuComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private userService: UserService) {
 
-    this.user = this.userService.getLoggedUser();
-
-    this.openUserModal()}
+     this.userService.getLoggedUser().subscribe(res => {
+       this.user = res[0]
+    });
+  }
 
   ngOnInit(): void {
   }
@@ -25,7 +26,7 @@ export class MenuComponent implements OnInit {
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '1000px',
       height: '90vh',
-      data: {user_id: this.user._id},
+      data: {user_id: this.user.id},
     });
 
     dialogRef.afterClosed().subscribe(result => {

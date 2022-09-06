@@ -1,41 +1,32 @@
-import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
+import {Observable} from 'rxjs';
+import {HttpService} from "./http-service";
 
 @Injectable()
 export class UserService {
 
-  constructor(private http: HttpClient){}
+  constructor(private httpService: HttpService) {
+  }
 
-  getUsers(){
-    const userList = this.http.get('/users')
-    debugger
+  getUsers(): Observable<any> {
+    let token = localStorage.getItem('r-token') || ''
+    const userList = this.httpService.httpGet('/api/users', token)
+
     return userList
   }
 
-  getUser(id: number) {
-    const user = this.http.get(`/users?_id=${id}`).toPromise();
-    debugger
+  getUser(id: number): Observable<any> {
+    let token = localStorage.getItem('r-token') || ''
+    const user = this.httpService.httpGet(`/api/users?id=${id}`, token);
     return user;
   }
 
-  getLoggedUser() {
+  getLoggedUser(): Observable<any> {
+    let token = localStorage.getItem('r-token') || ''
     const logged_id = 1
-    const user = this.http.get(`/users?_id=${logged_id}`).toPromise();
-    debugger;
-    if (user) {
-      return user;
-    }
+    const user = this.httpService.httpGet(`/api/users?id=${logged_id}`, token);
 
-    return {
-      _id: 0,
-      name: '',
-      username: '',
-      followers: 0,
-      following: 0,
-      total_posts_count: 0,
-      profile_picture: '',
-      creted_at: ''
-    }
-
+    return user;
   }
+
 }

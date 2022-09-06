@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-12 col-md-2 col-lg-1">
             <div mat-card-avatar class="profile-image"
-                 (click)="openUserModal(post.user._id)"
+                 (click)="openUserModal(post.user.id)"
                  [ngStyle]="{background: 'url(' + post.user.profile_picture + ')'}"></div>
           </div>
           <div class="col-12 col-md-8 col-lg-9">
@@ -14,8 +14,8 @@
           </div>
           <div class="col-12 col-md-2">
             <div class="d-flex justify-content-end">
-              <button *ngIf="post.is_following !== true" class="btn-primary following-tag">follow</button>
-              <button *ngIf="post.is_following === true" class="btn-primary-outline following-tag">following</button>
+              <button *ngIf="post.is_following !== true" class="btn-primary" (click)="unfollow()">follow</button>
+              <button *ngIf="post.is_following === true" class="btn-primary btn-primary-outline following-tag">following</button>
             </div>
           </div>
         </div>

@@ -2,24 +2,24 @@
   <div class="row">
     <div class="col-12 col-lg-6 d-flex justify-content-start">
       <div mat-icon-button class="profile-image" aria-label="profile"
-           [ngStyle]="{background: 'url(' + user.profile_picture + ')'}">
+           [ngStyle]="{background: 'url(' + user?.profile_picture + ')'}">
       </div>
-      <h1 class="name">{{user.name}}</h1>
+      <h1 class="name">{{user?.name}}</h1>
     </div>
     <div class="col-12 col-lg-6">
       <div class="row">
         <div class="col-4 metrics">
-          <span class="value">{{user.followers}}</span>
+          <span class="value">{{user?.followers}}</span>
           <br>
           <span class="label">followers</span>
         </div>
         <div class="col-4 metrics">
-          <span class="value">{{user.following}}</span>
+          <span class="value">{{user?.following}}</span>
           <br>
           <span class="label">following</span>
         </div>
         <div class="col-4 metrics">
-          <span class="value">{{user.total_posts_count}}</span>
+          <span class="value">{{user?.total_posts_count}}</span>
           <br>
           <span class="label">posts</span>
         </div>

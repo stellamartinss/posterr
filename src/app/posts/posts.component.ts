@@ -11,10 +11,12 @@ export class PostsComponent implements OnInit {
   selectedToggle = 'all';
 
   constructor(private router: Router) {
+    // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.setSelectedToggle('all')
   }
 
   ngOnInit(): void {
+
   }
 
   setSelectedToggle(toggle: string) {

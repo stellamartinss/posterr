@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import users from '../../../api/db/users.json'
 import {PostService} from "../services/post.service";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-publish-area',
@@ -14,9 +15,9 @@ export class PublishAreaComponent implements OnInit {
 
   user: any;
   placeholder = '';
-  users = users;
+  users: any
 
-  constructor(private postService: PostService) {
+  constructor(private postService: PostService, private userService: UserService) {
   }
 
   ngOnInit(): void { }
@@ -26,9 +27,15 @@ export class PublishAreaComponent implements OnInit {
     this.placeholder = `Hey ${this.user.name}! Post something in your profile`
   }
 
+  getUsers(){
+    this.userService.getUsers().subscribe(res => {
+      this.users = res
+    })
+  }
+
   publish(content: HTMLInputElement) {
     const user = {
-      _id: this.user._id,
+      id: this.user.id,
       name: this.user.name,
       username: this.user.username,
       followers: this.user.followers,
@@ -38,8 +45,9 @@ export class PublishAreaComponent implements OnInit {
       created_at: this.user.creted_at
     }
 
+    debugger;
     const bag= {
-      _id: Math.floor(Math.random() * 1000),
+      id: Math.floor(Math.random() * 1000),
       user: user,
       following: this.user.following,
       content: {
@@ -50,7 +58,6 @@ export class PublishAreaComponent implements OnInit {
     }
 
     this.postService.publishPost(bag)
-    debugger;
     this.reloadPostsEvent.emit(true)
   }
 }

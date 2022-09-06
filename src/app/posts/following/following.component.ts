@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import posts from '../../../../api/db/posts.json'
+import {PostService} from "../../services/post.service";
+import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-following',
@@ -8,14 +11,19 @@ import posts from '../../../../api/db/posts.json'
 })
 export class FollowingComponent implements OnInit {
 
-  posts = posts
+  posts: any
 
-  constructor() {
-    const postList = posts;
-    this.posts = postList.filter(post => post.is_following === true)
+  constructor(private postsService: PostService,private router: Router) {
   }
 
   ngOnInit(): void {
+    this.getFollowingPosts()
+  }
+
+  getFollowingPosts(){
+    this.postsService.getUserFollowingPosts().subscribe(res => {
+      this.posts = res
+    })
   }
 
 }
