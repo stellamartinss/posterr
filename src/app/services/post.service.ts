@@ -9,8 +9,9 @@ export class PostService {
   }
 
   getUserPosts(id: number): Observable<any> {
+    debugger;
     let token = localStorage.getItem('r-token') || ''
-    const userPosts = this.httpService.httpGet(`/api/posts?user._id=${id}&_sort=content.created_at&_order=desc`, token);
+    const userPosts = this.httpService.httpGet(`/api/posts?user.id=${id}&_sort=content.created_at&_order=desc`, token);
 
     return userPosts;
   }

@@ -34,6 +34,7 @@ export class ModalComponent implements OnInit {
   }
 
   private getUser() {
+    debugger;
     this.userService.getUser(this.data.user_id).subscribe(res => {
       this.user = res[0]
     }, error => {
