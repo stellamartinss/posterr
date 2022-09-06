@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {NavigationStart, Router} from "@angular/router";
+import {filter} from "rxjs";
 
 @Component({
   selector: 'app-posts',
@@ -11,8 +12,6 @@ export class PostsComponent implements OnInit {
   selectedToggle = 'all';
 
   constructor(private router: Router) {
-    // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.setSelectedToggle('all')
   }
 
   ngOnInit(): void {
@@ -22,10 +21,10 @@ export class PostsComponent implements OnInit {
   setSelectedToggle(toggle: string) {
     this.selectedToggle = toggle
     if(toggle === 'following') {
-      this.router.navigate(['/following']);
+      this.router.navigateByUrl('/following');
       this.selectedToggle = 'following';
     } else {
-      this.router.navigate(['/all']);
+      this.router.navigateByUrl('/all');
       this.selectedToggle = 'all';
     }
   }

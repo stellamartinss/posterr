@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import posts from '../../../../api/db/posts.json'
 import {PostService} from "../../services/post.service";
 import {Observable} from "rxjs";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-following',
@@ -13,7 +12,8 @@ export class FollowingComponent implements OnInit {
 
   posts: any
 
-  constructor(private postsService: PostService,private router: Router) {
+  constructor(private postsService: PostService) {
+
   }
 
   ngOnInit(): void {

@@ -43,7 +43,8 @@ import {HttpService} from "./services/http-service";
     BrowserAnimationsModule,
     MatDialogModule,
     PostsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([])
   ],
   providers: [UserService, PostService, HttpService],
   bootstrap: [AppComponent],

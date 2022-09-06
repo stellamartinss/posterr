@@ -2,11 +2,12 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {AllComponent} from "./all/all.component";
 import {FollowingComponent} from "./following/following.component";
-import {PostsComponent} from "./posts.component";
 
 const routes: Routes = [
-  {path: 'all', pathMatch: 'full', component: AllComponent},
-  {path: 'following', pathMatch: 'full', component: FollowingComponent},
+  {path: '', component: AllComponent},
+  {path: 'all', component: AllComponent},
+  {path: 'following', component: FollowingComponent},
+  {path: '**', component: AllComponent},
 ]
 
 @NgModule({
