@@ -39,7 +39,6 @@ export class FollowingComponent implements OnInit {
 
   private getProfile() {
     this.routeQueryParams$ = this.route.queryParams.subscribe(params => {
-      debugger
       if (params['user_id']) {
         this.commonService.openUserModal(+params['user_id']);
       }

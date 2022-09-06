@@ -1,11 +1,12 @@
 import {Injectable} from "@angular/core";
 import {Observable} from 'rxjs';
 import {HttpService} from "./http-service";
+import {DataService} from "./data.service";
 
 @Injectable()
 export class UserService {
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService, private dataService: DataService) {
   }
 
   getUsers(): Observable<any> {
@@ -27,6 +28,16 @@ export class UserService {
     const user = this.httpService.httpGet(`/api/users?id=${logged_id}`, token);
 
     return user;
+  }
+
+  unfollow(post: any){
+    let token = localStorage.getItem('r-token') || ''
+    return this.httpService.httpPut(`/api/posts/${post['id']}`, post, token);
+  }
+
+  follow(post: any){
+    let token = localStorage.getItem('r-token') || ''
+    return this.httpService.httpPut(`/api/posts/${post['id']}`, post, token);
   }
 
 }
