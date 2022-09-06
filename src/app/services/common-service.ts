@@ -21,6 +21,7 @@ export class CommonService {
   }
 
   checkNewPublishTrigger() {
+    debugger;
     this.dataService.reloadPosts.subscribe((res) => {
       if(res) {
         return this.getAll();

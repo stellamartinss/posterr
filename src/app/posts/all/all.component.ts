@@ -3,7 +3,7 @@ import {PostService} from "../../services/post.service";
 import {DataService} from "../../services/data.service";
 import {CommonService} from "../../services/common-service";
 import {MatDialog} from "@angular/material/dialog";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Data, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 
 @Component({
@@ -17,6 +17,7 @@ export class AllComponent implements OnInit {
   routeQueryParams$: Subscription | undefined;
 
   constructor(private postsService: PostService,
+              private dataService: DataService,
               private commonService: CommonService,
               private router: Router,
               private route: ActivatedRoute) {
@@ -24,7 +25,11 @@ export class AllComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.posts = this.commonService.checkNewPublishTrigger();
+    this.dataService.reloadPosts.subscribe((res) => {
+      if(res) {
+        this.posts = this.getAll();
+      }
+    })
     this.getAll();
   }
 
