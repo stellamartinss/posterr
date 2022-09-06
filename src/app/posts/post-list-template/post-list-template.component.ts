@@ -3,6 +3,7 @@ import {ModalComponent} from "../../modal/modal.component";
 import {MatDialog} from "@angular/material/dialog";
 import {PostService} from "../../services/post.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {CommonService} from "../../services/common-service";
 
 @Component({
   selector: 'app-post-list-template',
@@ -12,13 +13,16 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class PostListTemplateComponent implements OnInit {
   @Input() posts: any;
 
-  constructor(public dialog: MatDialog, private router: Router,
-              private route: ActivatedRoute) {}
+  constructor(public dialog: MatDialog,
+              private router: Router,
+              private commonService: CommonService) {}
 
   ngOnInit() {}
 
   goToProfile(user_id: number) {
-    this.router.navigate(['/all'], {queryParams: {user_id: user_id}});
+    const page = this.commonService.getPage()
+    console.log(page)
+    this.router.navigate([page], {queryParams: {user_id: user_id}});
   }
 
   unfollow() {}

@@ -2,6 +2,8 @@ import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import users from '../../../api/db/users.json'
 import {PostService} from "../services/post.service";
 import {UserService} from "../services/user.service";
+import {Router} from "@angular/router";
+import {CommonService} from "../services/common-service";
 
 @Component({
   selector: 'app-publish-area',
@@ -17,17 +19,21 @@ export class PublishAreaComponent implements OnInit {
   placeholder = '';
   users: any
 
-  constructor(private postService: PostService, private userService: UserService) {
+  constructor(private postService: PostService,
+              private router: Router,
+              private commonService: CommonService,
+              private userService: UserService) {
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   ngOnChanges() {
     this.user = this.logged_user_id
-    this.placeholder = `Hey ${this.user.name}! Post something in your profile`
+    this.placeholder = `Hey ${this.user?.name}! Post something in your profile`
   }
 
-  getUsers(){
+  getUsers() {
     this.userService.getUsers().subscribe(res => {
       this.users = res
     })
@@ -45,7 +51,7 @@ export class PublishAreaComponent implements OnInit {
       created_at: this.user.creted_at
     }
 
-    const bag= {
+    const bag = {
       id: Math.floor(Math.random() * 10000),
       user: user,
       following: this.user.following,
@@ -58,5 +64,13 @@ export class PublishAreaComponent implements OnInit {
 
     this.postService.publishPost(bag)
     this.reloadPostsEvent.emit(true)
+
+    this.checkIfInFollowingPage();
+  }
+
+  private checkIfInFollowingPage() {
+    if (this.commonService.isInPageFollowing()) {
+      this.commonService.goToPageAll()
+    }
   }
 }

@@ -38,7 +38,33 @@ export class CommonService {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.router.navigate(['../'], { relativeTo: this.route });
+      this.dataService.setReloadPosts(true);
+      if (window.location.href.includes('/following')){
+        this.router.navigate(['/following'], { relativeTo: this.route });
+      } else {
+        this.router.navigate(['/all'], { relativeTo: this.route });
+      }
+
     });
+  }
+
+  isInPageFollowing(){
+    return window.location.href.includes('/following')
+  }
+
+  isInPageAll(){
+    return window.location.href.includes('/following')
+  }
+
+  goToPageAll() {
+    this.router.navigate(['/all'])
+  }
+
+  goToPageFollowing() {
+    this.router.navigate(['/following'])
+  }
+
+  getPage() {
+    return window.location.pathname
   }
 }
