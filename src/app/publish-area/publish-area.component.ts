@@ -45,15 +45,14 @@ export class PublishAreaComponent implements OnInit {
       created_at: this.user.creted_at
     }
 
-    debugger;
     const bag= {
-      id: Math.floor(Math.random() * 1000),
+      id: Math.floor(Math.random() * 10000),
       user: user,
       following: this.user.following,
       content: {
         type: 'normal',
         text: content.value,
-        created_at: Date.now()
+        created_at: new Date()
       }
     }
 

@@ -9,6 +9,9 @@
       </button>
     </div>
 
+    <app-publish-area [logged_user_id]="logged_user" (reloadPostsEvent)="reloadPosts($event)"></app-publish-area>
+
+
     <router-outlet></router-outlet>
 
   </div>

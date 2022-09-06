@@ -2,26 +2,25 @@
   <mat-card class="mt-3" *ngFor="let post of posts"
             [class]="{'repost': post.content.type === 'repost', 'normal': post.content.type === 'normal', 'quote': post.content.type === 'quote'}">
 
-      <div class="container-fluid" >
-        <div class="row">
-          <div class="col-12 col-md-2 col-lg-1">
-            <div mat-card-avatar class="profile-image"
-                 (click)="openUserModal(post.user.id)"
-                 [ngStyle]="{background: 'url(' + post.user.profile_picture + ')'}"></div>
-          </div>
-          <div class="col-12 col-md-8 col-lg-9">
-            <span class="profile-name">{{post.user.name}}</span>
-          </div>
-          <div class="col-12 col-md-2">
-            <div class="d-flex justify-content-end">
-              <button *ngIf="post.is_following !== true" class="btn-primary" (click)="unfollow()">follow</button>
-              <button *ngIf="post.is_following === true" class="btn-primary btn-primary-outline following-tag">following</button>
-            </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-md-2 col-lg-1">
+          <div mat-card-avatar class="profile-image"
+               (click)="openUserModal(post.user.id)"
+               [ngStyle]="{background: 'url(' + post.user.profile_picture + ')'}"></div>
+        </div>
+        <div class="col-12 col-md-8 col-lg-9">
+          <span class="profile-name">{{post.user.name}}</span>
+        </div>
+        <div class="col-12 col-md-2">
+          <div class="d-flex justify-content-end">
+            <button *ngIf="post.is_following !== true" class="btn-primary" (click)="unfollow()">follow</button>
+            <button *ngIf="post.is_following === true" class="btn-primary btn-primary-outline following-tag">following
+            </button>
           </div>
         </div>
       </div>
-
-
+    </div>
 
 
     <mat-card-content class="mt-3"
@@ -43,7 +42,8 @@
         </div>
 
 
-        <mat-card-content class="mt-3" [class]="{'pink-text': post.content.type === 'quote', 'normal-text': post.content.type !== 'quote'}">
+        <mat-card-content class="mt-3"
+                          [class]="{'pink-text': post.content.type === 'quote', 'normal-text': post.content.type !== 'quote'}">
           <p class="sub-content">
             {{post.content.subContent.content.text}}
           </p>
@@ -54,7 +54,9 @@
           <span class="material-icons">share</span>
         </mat-card-actions>
 
-
+        <span class="post-date">
+          {{post.content.subContent.created_at | date: 'longDate'}}
+        </span>
       </mat-card>
 
 
@@ -65,5 +67,8 @@
     </mat-card-actions>
     <span class="material-icons big-quote-sign" *ngIf="post.content.type === 'quote'">format_quote</span>
     <span class="material-icons big-quote-sign" *ngIf="post.content.type === 'repost'">repeat</span>
+    <span class="post-date">
+    {{post.content.created_at | date: 'longDate'}}
+    </span>
   </mat-card>
 </div>

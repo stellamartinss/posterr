@@ -21,6 +21,7 @@ import {UserService} from "./services/user.service";
 import {PostService} from "./services/post.service";
 import {HttpClientModule} from "@angular/common/http";
 import {HttpService} from "./services/http-service";
+import {CommonService} from './services/common-service';
 
 
 
@@ -30,7 +31,7 @@ import {HttpService} from "./services/http-service";
     PostsComponent,
     MenuComponent,
     ModalComponent,
-    PublishAreaComponent,
+    PublishAreaComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +47,10 @@ import {HttpService} from "./services/http-service";
     HttpClientModule,
     RouterModule.forRoot([])
   ],
-  providers: [UserService, PostService, HttpService],
+  providers: [UserService,
+    PostService,
+    HttpService,
+    CommonService],
   bootstrap: [AppComponent],
 })
 export class AppModule {
