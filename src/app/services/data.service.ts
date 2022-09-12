@@ -5,6 +5,7 @@ import {BehaviorSubject} from "rxjs";
 export class DataService {
 
   reloadPosts = new BehaviorSubject<any>(null)
+  reloadPostId = new BehaviorSubject<any>(null)
 
   constructor() {
   }
@@ -12,4 +13,10 @@ export class DataService {
   setReloadPosts(shouldRealod: boolean) {
     this.reloadPosts.next(shouldRealod)
   }
+
+  setReloadPostId(reloadPostId: number) {
+    debugger;
+    this.reloadPostId.next(reloadPostId);
+  }
+
 }

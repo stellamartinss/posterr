@@ -40,6 +40,10 @@ h1 {
   }
 }
 
+button {
+  cursor: pointer;
+}
+
 .btn-icon {
   background: transparent;
   border: unset;
@@ -79,6 +83,13 @@ h1 {
   min-width: 100px;
 }
 
+.btn-small {
+  width: fit-content;
+  height: fit-content;
+  padding: unset;
+  font-size: 12px;
+}
+
 .pink-text{
   color: $pink
 }
@@ -89,6 +100,11 @@ h1 {
   height: 80px;
   border: unset;
   border-radius: 100px;
+}
+
+.material-icons{
+  display: inline-flex;
+  vertical-align: middle;
 }
 
 #modal div .mat-card-content .mat-card span.profile-name, #modal div .mat-card span.profile-name {

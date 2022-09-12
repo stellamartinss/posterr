@@ -21,11 +21,11 @@ export class PostListTemplateComponent implements OnInit {
               private dataService: DataService,
               private userService: UserService,
               private postService: PostService,
-              private commonService: CommonService) {}
+              private commonService: CommonService) {
+  }
 
   ngOnInit() {
     this.userService.getLoggedUser().subscribe(user => {
-      debugger;
       this.logged_in = user[0];
     });
   }
@@ -35,18 +35,25 @@ export class PostListTemplateComponent implements OnInit {
     this.router.navigate([page], {queryParams: {user_id: user_id}});
   }
 
-  unfollow(id: number) {
-    this.postService.getUserPosts(id).subscribe((posts: Array<any>) => {
+  unfollow(post: { post_id: number; user_id: number }) {
+    this.postService.getUserPosts(post.user_id).subscribe((posts: Array<any>) => {
       let count = 0;
-      posts.forEach(post => {
-        post.is_following = null;
-        this.userService.unfollow(post).subscribe(res => {
-          if(res) {
+      posts.forEach(p => {
+        p.is_following = null;
+        this.userService.unfollow(p).subscribe(res => {
+          if (res) {
             count = count + 1;
           }
 
-          if(count === posts.length){
+          if (count === posts.length) {
             this.dataService.setReloadPosts(true);
+
+            const element = document.getElementById(`post-number-${post.post_id}-${post.user_id}`)
+            element?.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+              inline: "nearest"
+            });
           }
         });
       })
@@ -54,23 +61,39 @@ export class PostListTemplateComponent implements OnInit {
 
   }
 
-  follow(id: number) {
-    this.postService.getUserPosts(id).subscribe((posts: Array<any>) => {
+  follow(post: { post_id: number; user_id: number }) {
+    debugger;
+    this.postService.getUserPosts(post.user_id).subscribe((posts: Array<any>) => {
       let count = 0;
-      posts.forEach(post => {
-        post.is_following = true;
-        this.userService.follow(post).subscribe(res => {
-          if(res) {
-            debugger;
+      posts.forEach(p => {
+        p.is_following = true;
+        this.userService.follow(p).subscribe(res => {
+          if (res) {
             count = count + 1;
           }
-          if(count === posts.length){
+          if (count === posts.length) {
+            debugger;
             this.dataService.setReloadPosts(true);
+
+            const element = document.getElementById(`post-number-${post.post_id}-${post.user_id}`)
+            element?.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+              inline: "nearest"
+            });
           }
         });
       })
 
 
     });
+  }
+
+  toRepost(id: number) {
+    this.postService.toRespost(id);
+  }
+
+  toQuote(id: number) {
+    this.postService.toQuote(id);
   }
 }

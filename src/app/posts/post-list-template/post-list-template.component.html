@@ -1,6 +1,6 @@
 <div class="col-12 mt-3">
   <mat-card class="mt-3" *ngFor="let post of posts"
-            [id]="'post-number-'+post.id"
+            [id]="'post-number-'+post.id+'-'+post.user.id"
             [class]="{'repost': post.content.type === 'repost', 'normal': post.content.type === 'normal', 'quote': post.content.type === 'quote'}">
 
     <div class="container-fluid">
@@ -14,10 +14,13 @@
           <span class="profile-name">{{post.user.name}}</span>
         </div>
         <div class="col-12 col-md-2">
-          <div class="d-flex justify-content-end" *ngIf="post.user.id !== logged_in.id">
-            <button *ngIf="post.is_following !== true" class="btn-primary" (click)="follow(post.user.id)">follow</button>
+          <div class="d-flex justify-content-end" *ngIf="post.user.id !== logged_in?.id">
+            <button *ngIf="post.is_following !== true" class="btn-primary" (click)="follow({user_id: post.user.id, post_id: post.id})">
+              follow  {{post.id}}
+            </button>
             <button *ngIf="post.is_following === true" class="btn-primary btn-primary-outline following-tag"
-                    (click)="unfollow(post.user.id)">following
+                    (click)="unfollow({user_id: post.user.id, post_id: post.id})">
+              following {{post.id}}
             </button>
           </div>
         </div>
@@ -51,10 +54,16 @@
           </p>
 
         </mat-card-content>
-        <mat-card-actions>
-          <span class="material-icons">favorite_border</span>
-          <span class="material-icons">share</span>
-        </mat-card-actions>
+<!--        <mat-card-actions>-->
+<!--          <button class="btn-primary btn-small mr-3" (click)="toRepost(post.id)">-->
+<!--            <span class="material-icons">repeat</span>-->
+<!--            repost-->
+<!--          </button>-->
+<!--          <button class="btn-primary btn-small mr-3" (click)="toQuote(post.id)">-->
+<!--            <span class="material-icons">format_quote</span>-->
+<!--            quote-->
+<!--          </button>-->
+<!--        </mat-card-actions>-->
 
         <span class="post-date">
           {{post.content.subContent.created_at | date: 'longDate'}} at {{post.content.subContent.created_at | date: 'shortTime'}}
@@ -64,8 +73,14 @@
 
     </mat-card-content>
     <mat-card-actions>
-      <span class="material-icons">favorite_border</span>
-      <span class="material-icons">share</span>
+      <button class="btn-primary btn-small mr-3" (click)="toRepost(post.id)">
+        <span class="material-icons">repeat</span>
+        repost
+      </button>
+      <button class="btn-primary btn-small mr-3" (click)="toQuote(post.id)">
+        <span class="material-icons">format_quote</span>
+        quote
+      </button>
     </mat-card-actions>
     <span class="material-icons big-quote-sign" *ngIf="post.content.type === 'quote'">format_quote</span>
     <span class="material-icons big-quote-sign" *ngIf="post.content.type === 'repost'">repeat</span>

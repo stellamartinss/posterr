@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {PostService} from "../../services/post.service";
 import {DataService} from "../../services/data.service";
 import {CommonService} from "../../services/common-service";
@@ -16,6 +16,10 @@ export class AllComponent implements OnInit {
   posts: any;
   routeQueryParams$: Subscription | undefined;
 
+  @HostListener('scroll') onScrollHost(e: Event): void {
+    console.log(this.getYPosition(e));
+  }
+
   constructor(private postsService: PostService,
               private dataService: DataService,
               private commonService: CommonService,
@@ -31,6 +35,10 @@ export class AllComponent implements OnInit {
       }
     })
     this.getAll();
+  }
+
+  getYPosition(e: Event): number {
+    return (e.target as Element).scrollTop;
   }
 
   getAll() {
