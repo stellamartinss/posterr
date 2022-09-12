@@ -6,7 +6,8 @@
         </div>
       </div>
       <div class="col-10 col-sm-10 col-md-9 text-right d-grid gap-2 d-md-block mt-0 mt-md-0">
-        <input type="text" class="input-content" [placeholder]="placeholder" #content>
+        <input type="text" class="input-content" #box (keyup)="onKeyUp(box)" [maxLength]="publish_content_max_length" [placeholder]="placeholder" #content>
+        <span class="total-chars">{{publish_content.length}} / {{publish_content_max_length}}</span>
       </div>
       <div class="col-md-2 text-right d-grid gap-2 d-md-block mt-2 mt-md-0">
         <button class="btn-secondary publish-button" (click)="publish(content)">Publish</button>

@@ -18,6 +18,8 @@ export class PublishAreaComponent implements OnInit {
   user: any;
   placeholder = '';
   users: any
+  publish_content = '';
+  publish_content_max_length = 777;
 
   constructor(private postService: PostService,
               private router: Router,
@@ -71,6 +73,12 @@ export class PublishAreaComponent implements OnInit {
   private checkIfInFollowingPage() {
     if (this.commonService.isInPageFollowing()) {
       this.commonService.goToPageAll()
+    }
+  }
+
+  onKeyUp(boxInput : HTMLInputElement){
+    if(boxInput.value.length <= this.publish_content_max_length) {
+      this.publish_content = boxInput.value;
     }
   }
 }
