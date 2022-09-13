@@ -43,8 +43,19 @@ to get the letters typed until the late key up be equal to `space`, `enter` or `
 
 ## Critique
 
-To be honest I think it was very exciting do this task. If I had enough time I would work better in the scroll part after quoting or reposting stuff.
-I would probably do another aproach on it so the scrolling would not be used. 
+If I have enough time 
+- I would do a instant change instead of a scrolling effect on click on follow/unfollow.
+- I also would add the unfollow in the profile page for every user instead of in the post (I read it should be done there to late)
+- I would componetize the project items in a better way
+- I would also work in the repost of a repost or quote, or quote of an quote or repost situation better, because now if I repost a repost, looks like I the repost author I am reposting
+is the actual owner of the first post done. In summary I would dear better with this nich
+sitation. Probably remove the option to quote or repost a repost.
+  
+To scale this project we would need to develop the authentication feature and the available pages
+to be seen if we be not logged in. 
+In a real life situation I would develop the back-end and handle `toRespost()`, `toQuote()` and some other functions there.
+
+
 
 
 
