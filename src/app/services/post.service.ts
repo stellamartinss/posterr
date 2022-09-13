@@ -57,24 +57,25 @@ export class PostService {
     this.getPostById(id).subscribe(post => {
       this.userService.getLoggedUser().subscribe((loggedUser: any) => {
         const user = loggedUser[0];
-        this.getUserPosts(user.id).subscribe(userPosts => {
+        this.getPosts().subscribe(posts => {
+          debugger;
+          const count_user_posts = posts.filter((post: any) => post.user.id === user.id)
           debugger;
           post_bag = {
-            id: Math.floor(Math.random() * 10000),
+            id: posts.length + 1,
             user: {
               id: user.id,
               name: user.name,
               username: user.username,
               followers: user.followers,
               following: user.following,
-              total_posts_count: userPosts.length,
+              total_posts_count: count_user_posts.length,
               profile_picture: user.profile_picture,
               created_at: user.created_at
             },
             is_following: true,
             content: {
               type: 'repost',
-              text: 'repost feature will be developed in the next version',
               created_at: new Date(),
               subContent: {
                 user: {
@@ -127,6 +128,7 @@ export class PostService {
             is_following: true,
             content: {
               type: 'quote',
+              text: 'text feature will be developed in the next version',
               created_at: new Date(),
               subContent: {
                 user: {
