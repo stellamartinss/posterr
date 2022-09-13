@@ -94,6 +94,16 @@ button {
   font-size: 12px;
 }
 
+.btn-transparent {
+  background: transparent;
+  border: unset;
+}
+
+
+.text-right {
+  text-align: right;
+}
+
 .pink-text{
   color: $pink
 }

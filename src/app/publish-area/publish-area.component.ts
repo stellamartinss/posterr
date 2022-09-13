@@ -13,6 +13,7 @@ import {CommonService} from "../services/common-service";
 export class PublishAreaComponent implements OnInit {
 
   @Input() logged_user_id: any;
+  @Input() quote_post: any;
   @Output() reloadPostsEvent = new EventEmitter<boolean>();
 
   user: any;
@@ -50,24 +51,43 @@ export class PublishAreaComponent implements OnInit {
       following: this.user.following,
       total_posts_count: this.user.total_posts_count,
       profile_picture: this.user.profile_picture,
-      created_at: this.user.creted_at
+      created_at: this.user.created_at
     }
 
-    const bag = {
-      id: Math.floor(Math.random() * 10000),
-      user: user,
-      following: this.user.following,
-      content: {
-        type: 'normal',
-        text: content.value,
-        created_at: new Date()
+    let bag = {}
+    this.postService.getPosts().subscribe(posts => {
+      if(!this.quote_post) {
+        bag = {
+          id: posts.length + 1,
+          user: user,
+          following: this.user.following,
+          content: {
+            type: 'normal',
+            text: content.value,
+            created_at: new Date()
+          }
+        }
+      } else {
+        debugger;
+        bag = {
+          id: posts.length + 1,
+          user: user,
+          following: this.user.following,
+          content: {
+            type: 'quote',
+            text: content.value,
+            created_at: new Date(),
+            subContent: this.quote_post.content.subContent
+          }
+        }
       }
-    }
 
-    this.postService.publishPost(bag)
-    this.reloadPostsEvent.emit(true)
+      this.postService.publishPost(bag)
+      this.reloadPostsEvent.emit(true)
 
-    this.checkIfInFollowingPage();
+      this.checkIfInFollowingPage();
+    })
+
   }
 
   private checkIfInFollowingPage() {

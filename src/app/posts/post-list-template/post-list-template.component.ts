@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {CommonService} from "../../services/common-service";
 import {UserService} from "../../services/user.service";
 import {DataService} from "../../services/data.service";
+import {RepostModalComponent} from "../../repost-modal/repost-modal.component";
 
 @Component({
   selector: 'app-post-list-template',
@@ -18,6 +19,7 @@ export class PostListTemplateComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
               private router: Router,
+              private route: ActivatedRoute,
               private dataService: DataService,
               private userService: UserService,
               private postService: PostService,
@@ -93,7 +95,21 @@ export class PostListTemplateComponent implements OnInit {
     this.postService.toRespost(id);
   }
 
-  toQuote(id: number) {
-    this.postService.toQuote(id);
+  toQuote(post: any) {
+    const dialogRef = this.dialog.open(RepostModalComponent, {
+      width: '1000px',
+      height: '90vh',
+      data: {post: post, user: this.logged_in},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.dataService.setReloadPosts(true);
+      if (window.location.href.includes('/following')){
+        this.router.navigate(['/following'], { relativeTo: this.route });
+      } else {
+        this.router.navigate(['/all'], { relativeTo: this.route });
+      }
+
+    });
   }
 }
